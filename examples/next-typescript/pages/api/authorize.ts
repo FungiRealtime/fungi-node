@@ -1,5 +1,5 @@
-import crypto from 'crypto';
 import { NextApiRequest, NextApiResponse } from 'next';
+import { fungi } from '../../lib/fungi';
 
 interface Body {
   channel_name: string;
@@ -12,16 +12,7 @@ export default async function handle(
 ) {
   const { channel_name, socket_id } = req.body as Body;
 
-  const key = process.env.FUNGI_KEY!;
-  const secret = process.env.FUNGI_SECRET!;
-  const stringToSign = `${socket_id}:${channel_name}`;
+  const auth = fungi.authenticate(socket_id, channel_name);
 
-  const signature = crypto
-    .createHmac('sha256', secret)
-    .update(stringToSign)
-    .digest('hex');
-
-  const auth = `${key}:${signature}`;
-
-  return res.json({ auth });
+  return res.json(auth);
 }

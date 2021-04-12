@@ -1,9 +1,31 @@
+import crypto from 'crypto';
 import { fetchWithTimeout } from './utils/fetchWithTimeout';
 import { HttpError } from './HttpError';
 import { BatchedEvent, ClientConfig } from './types';
 
 export class Client {
   constructor(private config: ClientConfig) {}
+
+  /**
+   * Authenticate a channel.
+   * @param socketId The id of the socket to authenticate.
+   * @param channelName The name of the channel to authenticate.
+   * @returns An object with authentication parameters.
+   */
+  public authenticate(socketId: string, channelName: string) {
+    const key = this.config.key;
+    const secret = this.config.secret;
+    const stringToSign = `${socketId}:${channelName}`;
+
+    const signature = crypto
+      .createHmac('sha256', secret)
+      .update(stringToSign)
+      .digest('hex');
+
+    const auth = `${key}:${signature}`;
+
+    return { auth };
+  }
 
   /**
    * Trigger up to ten events in one request.

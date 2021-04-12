@@ -7,7 +7,7 @@ export default async function handle(
   res: NextApiResponse
 ) {
   try {
-    await fungi.trigger('count', 'decrement', {
+    await fungi.trigger('private-count', 'decrement', {
       amount: 1,
     });
   } catch (error) {

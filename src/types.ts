@@ -14,6 +14,11 @@ export interface ClientConfig {
    * The app's key.
    */
   key: string;
+
+  /**
+   * The app's secret.
+   */
+  secret: string;
 }
 
 export interface BatchedEvent {

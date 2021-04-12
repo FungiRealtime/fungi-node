@@ -21,7 +21,7 @@ function Index() {
   }, []);
 
   const subscribe = () => {
-    const channel = fungi.current.subscribe('count');
+    const channel = fungi.current.subscribe('private-count');
     if (!countChannel.current) {
       countChannel.current = channel;
 
@@ -36,7 +36,7 @@ function Index() {
   };
 
   const unsubscribe = () => {
-    fungi.current.unsubscribe('count');
+    fungi.current.unsubscribe('private-count');
   };
 
   return (
