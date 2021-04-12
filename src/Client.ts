@@ -40,10 +40,8 @@ export class Client {
     const arraifyedChannels =
       typeof channels === 'string' ? [channels] : channels;
 
-    const uniqueChannels = [...new Set(arraifyedChannels)];
-
     await this.post('/events/trigger', {
-      channels: uniqueChannels,
+      channels: arraifyedChannels,
       event,
       data,
     });
