@@ -2,7 +2,7 @@ import { rest } from 'msw';
 import { wait } from '../utils/wait';
 
 export const TEST_BASE_URL = 'http://localhost:9999';
-export const HANDLER_WAIT_MS = 10;
+export const HANDLER_WAIT_MS = 500;
 
 export const handlers = [
   // Handler for testing timeouts.
