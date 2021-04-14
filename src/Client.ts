@@ -30,11 +30,11 @@ export class Client {
 
   /**
    * Trigger up to ten events in one request.
-   * @param events The events to be triggered.
+   * @param events The events to be triggered. Up to 10.
    */
   public triggerBatch(events: BatchedEvent[]) {
     if (events.length > 10) {
-      throw new Error(`Can't trigger more than 10 batched events.`);
+      throw new Error(`You can't trigger more than 10 batched events.`);
     }
 
     return this.post('/events/trigger_batch', {
