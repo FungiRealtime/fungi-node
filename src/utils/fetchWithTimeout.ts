@@ -1,5 +1,5 @@
-import fetch, { RequestInfo, RequestInit } from "node-fetch";
-import AbortController from "abort-controller";
+import fetch, { RequestInfo, RequestInit } from 'node-fetch';
+import AbortController from 'abort-controller';
 
 export function fetchWithTimeout(
   input: RequestInfo,

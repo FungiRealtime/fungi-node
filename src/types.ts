@@ -26,3 +26,9 @@ export interface BatchedEvent {
   event: string;
   data: Record<string, unknown>;
 }
+
+export interface TriggeredEvent {
+  channels: string[];
+  event: string;
+  data: Record<string, unknown>;
+}

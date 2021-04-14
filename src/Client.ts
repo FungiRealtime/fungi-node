@@ -1,7 +1,8 @@
 import crypto from 'crypto';
 import { fetchWithTimeout } from './utils/fetchWithTimeout';
 import { HttpError } from './HttpError';
-import { BatchedEvent, ClientConfig } from './types';
+import { BatchedEvent, ClientConfig, TriggeredEvent } from './types';
+import { unique } from './utils/unique';
 
 export class Client {
   constructor(private config: ClientConfig) {}
@@ -31,12 +32,12 @@ export class Client {
    * Trigger up to ten events in one request.
    * @param events The events to be triggered.
    */
-  public async triggerBatch(events: BatchedEvent[]) {
+  public triggerBatch(events: BatchedEvent[]) {
     if (events.length > 10) {
       throw new Error(`Can't trigger more than 10 batched events.`);
     }
 
-    await this.post('/events/trigger_batch', {
+    return this.post('/events/trigger_batch', {
       events,
     });
   }
@@ -48,21 +49,29 @@ export class Client {
    * @param event The name of the event.
    * @param data The object to be converted to JSON and distributed with the event.
    */
-  public async trigger(
+  public trigger(
     channels: string | string[],
     event: string,
     data: Record<string, unknown>
   ) {
+    const arraifyedChannels =
+      typeof channels === 'string' ? [channels] : channels;
+
+    const uniqueChannels = unique(arraifyedChannels);
+
+    if (uniqueChannels.length > 10) {
+      throw new Error(
+        `You can't publish an event on more than 10 channels at once.`
+      );
+    }
+
     if (event.length > 200) {
       throw new Error(
         `The name of the event can't be longer than 200 characters.`
       );
     }
 
-    const arraifyedChannels =
-      typeof channels === 'string' ? [channels] : channels;
-
-    await this.post('/events/trigger', {
+    return this.post<TriggeredEvent>('/events/trigger', {
       channels: arraifyedChannels,
       event,
       data,
