@@ -14,6 +14,14 @@
 
 <p align="center">Node HTTP client for a Fungi cluster.</p>
 
-## Features
+## Installation
 
-TODO
+This module is distributed via [npm](https://npmjs.com/) which is bundled with [node](https://nodejs.org/) and should be installed as one of your project's `dependencies`:
+
+```
+npm install @fungi-realtime/node
+```
+
+## Usage & Docs
+
+See the [official documentation](https://fungirealti.me/docs/node).
