@@ -32,3 +32,7 @@ export interface TriggeredEvent {
   event: string;
   data: Record<string, unknown>;
 }
+
+export interface AuthResponse {
+  auth: string;
+}

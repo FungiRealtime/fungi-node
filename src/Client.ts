@@ -1,7 +1,12 @@
 import crypto from 'crypto';
 import { fetchWithTimeout } from './utils/fetchWithTimeout';
 import { HttpError } from './HttpError';
-import { BatchedEvent, ClientConfig, TriggeredEvent } from './types';
+import {
+  AuthResponse,
+  BatchedEvent,
+  ClientConfig,
+  TriggeredEvent,
+} from './types';
 import { unique } from './utils/unique';
 
 export class Client {
@@ -13,7 +18,7 @@ export class Client {
    * @param channelName The name of the channel to authenticate.
    * @returns An object with authentication parameters.
    */
-  public authenticate(socketId: string, channelName: string) {
+  public authenticate(socketId: string, channelName: string): AuthResponse {
     const key = this.config.key;
     const secret = this.config.secret;
     const stringToSign = `${socketId}:${channelName}`;
@@ -37,7 +42,7 @@ export class Client {
       throw new Error(`You can't trigger more than 10 batched events.`);
     }
 
-    return this.post('/events/trigger_batch', {
+    return this.post<BatchedEvent[]>('/events/trigger_batch', {
       events,
     });
   }
