@@ -35,6 +35,10 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/FungiRealtime/fungi-node.git"
+  },
   "name": "@fungi-realtime/node",
   "author": "Gabriel",
   "module": "dist/node.esm.js",
