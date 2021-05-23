@@ -1,13 +1,13 @@
-export interface ClientConfig {
+export interface FungiClientConfig {
   /**
-   * The endpoint at which Fungi's REST API is available. This is required for triggering events.
+   * The url at which Fungi's REST API is available. This is required for triggering events.
    * ```
-   * const client = new Client({
-   *   httpEndpoint: 'https://your-app.com'
+   * let fungi = new FungiClient({
+   *   url: 'https://your-app.com'
    * })
    * ```
    */
-  httpEndpoint?: string;
+  url?: string;
 
   /**
    * The app's key.

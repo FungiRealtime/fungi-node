@@ -4,13 +4,13 @@ import { HttpError } from './HttpError';
 import {
   AuthResponse,
   BatchedEvent,
-  ClientConfig,
+  FungiClientConfig,
   TriggeredEvent,
 } from './types';
 import { unique } from './utils/unique';
 
-export class Client {
-  constructor(private config: ClientConfig) {}
+export class FungiClient {
+  constructor(private config: FungiClientConfig) {}
 
   /**
    * Authenticate a channel.
@@ -84,7 +84,7 @@ export class Client {
   }
 
   private async post<TData>(path: string, body: Record<string, unknown>) {
-    const res = await fetchWithTimeout(this.config.httpEndpoint + path, {
+    const res = await fetchWithTimeout(this.config.url + path, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -1,12 +1,12 @@
 import crypto from 'crypto';
-import { Client } from '../Client';
+import { FungiClient } from '../FungiClient';
 import { TEST_BASE_URL } from '../mocks/handlers';
 
 const CLIENT_KEY = 'test-key';
 const CLIENT_SECRET = 'test-secret';
 
-const client = new Client({
-  httpEndpoint: TEST_BASE_URL,
+const client = new FungiClient({
+  url: TEST_BASE_URL,
   key: CLIENT_KEY,
   secret: CLIENT_SECRET,
 });
