@@ -12,7 +12,7 @@
   </a>
 </p>
 
-<p align="center">Node HTTP client for a Fungi cluster.</p>
+<p align="center">Node.js library for Fungi's APIs.</p>
 
 ## Installation
 
