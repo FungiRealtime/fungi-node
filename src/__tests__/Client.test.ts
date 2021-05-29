@@ -264,7 +264,7 @@ describe('construct event', () => {
       JSON.stringify(payload),
       header,
       signingSecret,
-      2
+      5
     );
 
     expect(event).toMatchInlineSnapshot(`
