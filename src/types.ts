@@ -35,3 +35,9 @@ export interface TriggeredEvent {
 export interface AuthResponse {
   auth: string;
 }
+
+export interface WebhookEvent {
+  type: string;
+  data: Record<string, unknown>;
+  metadata: Record<string, unknown>;
+}

@@ -7,12 +7,12 @@ export function fetchWithTimeout(
   externalController?: AbortController,
   timeoutMs: number = 2000
 ) {
-  const controller = externalController ?? new AbortController();
+  let controller = externalController ?? new AbortController();
 
-  const fetchPromise = fetch(input, { signal: controller.signal, ...init });
+  let fetchPromise = fetch(input, { signal: controller.signal, ...init });
 
   // Abort the request after specified timeout in ms.
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
+  let timeout = setTimeout(() => controller.abort(), timeoutMs);
 
   return fetchPromise.finally(() => clearTimeout(timeout));
 }
