@@ -39,5 +39,4 @@ export interface AuthResponse {
 export interface WebhookEvent {
   type: string;
   data: Record<string, unknown>;
-  metadata: Record<string, unknown>;
 }
