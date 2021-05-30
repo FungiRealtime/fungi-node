@@ -231,9 +231,6 @@ describe('construct event', () => {
         "data": Object {
           "some": "data",
         },
-        "metadata": Object {
-          "hello": "world",
-        },
         "type": "test",
       }
     `);
@@ -271,9 +268,6 @@ describe('construct event', () => {
       Object {
         "data": Object {
           "some": "data",
-        },
-        "metadata": Object {
-          "hello": "world",
         },
         "type": "test",
       }

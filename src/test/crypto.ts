@@ -10,9 +10,6 @@ export function generateSignature(
     data: {
       some: 'data',
     },
-    metadata: {
-      hello: 'world',
-    },
   };
 
   let timestamp = secondsToSubtractToTs
